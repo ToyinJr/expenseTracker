@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./style.css";
 import Form from "./components/Form";
 import Table from "./components/Table";
+import { MainContext } from "./contexts/MainContext";
 
 const App = () => {
-  let [formData, setFormData] = useState([]);
-  let [id, setId] = useState(0);
+  // let [formData, setFormData] = useState([]);
+  // let [id, setId] = useState(0);
 
-  let totalArray = formData.map((item) => {
-    return Number(item.amount);
-  });
+  // let totalArray = formData.map((item) => {
+  //   return Number(item.amount);
+  // });
 
-  let sum = totalArray.reduce((acc, curr) => Number(acc) + Number(curr), 0);
+  // let sum = totalArray.reduce((acc, curr) => Number(acc) + Number(curr), 0);
+
+  // let [selected, setSelected] = useState("");
+
+  let { formData, setFormData, id, setId, sum, selected, setSelected } =
+    useContext(MainContext);
 
   console.log(`sum total is: ${sum}`);
-
-  let [selected, setSelected] = useState("");
 
   let newArray =
     selected === ""
@@ -34,7 +38,7 @@ const App = () => {
     <div className="bg-[#191919] text-white min-h-screen p-4">
       <div className="flex flex-col ">
         <p className="text-white text-4xl font-bold text-center">
-          Expense Tracker
+          Expense Tracker (Context)
         </p>
         Current selected: {selected}
         <Form
@@ -53,8 +57,6 @@ const App = () => {
           <option value="Fashion">Fashion</option>
           <option value="Miscellaneous">Miscellaneous</option>
         </select>
-
-
         <Table
           formData={formData}
           setFormData={setFormData}
