@@ -7,6 +7,16 @@ const App = () => {
   let [formData, setFormData] = useState([]);
   let [id, setId] = useState(0);
 
+  let totalArray = formData.map((item) => {
+    return (
+         Number(item.amount)
+    )
+  })
+
+  let sum = totalArray.reduce((acc, curr) => Number(acc) + Number(curr), 0);
+
+  console.log(`sum total is: ${sum}`);
+
   let [selected, setSelected] = useState('');
 
 
@@ -50,6 +60,8 @@ const App = () => {
           setId={setId}
           filteredData={filteredData}
         />
+
+        <p className="text-center text-4xl m-6">Total: {sum}</p>
       </div>
     </div>
   );
